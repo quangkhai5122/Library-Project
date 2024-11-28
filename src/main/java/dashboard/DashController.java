@@ -1,11 +1,11 @@
-package dashboard;
+package main.java.dashboard;
 
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import gametetris.Tetris;
+import main.java.gametetris.Tetris;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
