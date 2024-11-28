@@ -117,42 +117,57 @@
                      <children>
                         <AnchorPane layoutX="12.0" layoutY="12.0" prefHeight="485.0" prefWidth="755.0" styleClass="card-form" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
                            <children>
-                              <AnchorPane layoutX="56.66666666666667" layoutY="53.0" prefHeight="128.0" prefWidth="123.0" styleClass="card-form" stylesheets="@dashboardDesign.css" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="576.0">
+                              <AnchorPane layoutX="59.199999999999996" layoutY="47.0" prefHeight="138.0" prefWidth="215.0" style="-fx-background-color: brown;" styleClass="card-form" stylesheets="@dashboardDesign.css" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="483.0">
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" text="Books">
+                                    <ImageView fitHeight="134.0" fitWidth="135.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@pilebooks.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="totalBook" layoutX="141.0" layoutY="14.0" stylesheets="@dashboardDesign.css" text="Books">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="bookcnt" alignment="CENTER" layoutX="26.0" layoutY="48.0" prefHeight="50.0" prefWidth="68.0">
+                                    <Label fx:id="bookcnt" alignment="CENTER" layoutX="141.0" layoutY="42.0" prefHeight="50.0" prefWidth="68.0">
                                        <font>
                                           <Font size="35.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="315.0" layoutY="53.0" prefHeight="128.0" prefWidth="123.0" styleClass="card-form" stylesheets="@dashboardDesign.css">
+                              <AnchorPane layoutX="287.0" layoutY="47.0" prefHeight="138.0" prefWidth="215.0" style="-fx-background-color: brown;" styleClass="card-form" stylesheets="@dashboardDesign.css">
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" text="Members">
+                                    <ImageView fitHeight="134.0" fitWidth="135.0" layoutX="7.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@group.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="totalMem" layoutX="134.0" layoutY="14.0" stylesheets="@dashboardDesign.css" text="Members">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="memcnt" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="49.0">
+                                    <Label fx:id="memcnt" alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" layoutY="46.0" prefHeight="51.0" prefWidth="30.0">
                                        <font>
                                           <Font size="35.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="577.0" layoutY="53.0" prefHeight="128.0" prefWidth="123.0" styleClass="card-form" stylesheets="@dashboardDesign.css" AnchorPane.rightAnchor="54.33333333333326">
+                              <AnchorPane layoutX="516.0" layoutY="49.0" prefHeight="138.0" prefWidth="215.0" style="-fx-background-color: brown;" styleClass="card-form" stylesheets="@dashboardDesign.css" AnchorPane.rightAnchor="24.0">
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" text="Authors">
+                                    <ImageView fitHeight="134.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@author.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="totalAuthor" layoutX="134.0" layoutY="14.0" stylesheets="@dashboardDesign.css" text="Authors">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="authorcnt" alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="49.0" prefHeight="29.0" prefWidth="46.0">
+                                    <Label fx:id="authorcnt" alignment="CENTER" contentDisplay="CENTER" layoutX="154.0" layoutY="43.0" prefHeight="29.0" prefWidth="46.0">
                                        <font>
                                           <Font size="35.0" />
                                        </font>
