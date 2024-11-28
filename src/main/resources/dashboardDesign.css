@@ -174,3 +174,27 @@
 .unsave-btn:hover{
     -fx-background-color:#c54d5d;
 }
+#totalBook {
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, black, 3, 0, 0, 0);
+}
+#totalAuthor {
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, black, 3, 0, 0, 0);
+}
+#totalMem {
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, black, 3, 0, 0, 0);
+}
+#bookcnt {
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, black, 3, 0, 0, 0);
+}
+#memcnt {
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, black, 3, 0, 0, 0);
+}
+#authorcnt {
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, black, 3, 0, 0, 0);
+}
