@@ -149,6 +149,7 @@ public class DashController implements Initializable {
         } catch (Exception e) {e.printStackTrace();}
     }
 
+    // Thanh trượt DASHBOARD
     public void sliderArrow() {
 
         TranslateTransition slide = new TranslateTransition();
@@ -181,49 +182,7 @@ public class DashController implements Initializable {
 
     }
 
-    public void setAvatar() {
-        FileChooser chooser = new FileChooser();
-        chooser.setTitle("Select Avatar");
-        chooser.getExtensionFilters().add(new ExtensionFilter("Image file", "*png", "*jpg"));
-        Stage stage = (Stage)nav_form.getScene().getWindow();
-        File file = chooser.showOpenDialog(stage);
-
-        if(file != null) {
-            image = new Image(file.toURI().toString(), 100, 96, false, true);
-            circle_img.setFill(new ImagePattern(image));
-            semiCircle_img.setFill(new ImagePattern(image));
-
-            // getData.path = file.getAbsolutePath();
-        }
-    }
-
-    public void designSetAvatar() {
-
-        edit_button.setVisible(false);
-
-        circle_img.setOnMouseEntered((MouseEvent event) -> {
-            edit_button.setVisible(true);
-        });
-
-        circle_img.setOnMouseExited((MouseEvent event) -> {
-            edit_button.setVisible(false);
-        });
-
-        edit_button.setOnMouseEntered((MouseEvent event) -> {
-            edit_button.setVisible(true);
-            edit_icon.setFill(Color.valueOf("ffff"));
-        });
-
-        edit_button.setOnMousePressed((MouseEvent event) -> {
-            edit_button.setVisible(true);
-            edit_icon.setFill(Color.RED);
-        });
-
-        edit_button.setOnMouseExited((MouseEvent event) -> {
-            edit_button.setVisible(false);
-        });
-    }
-
+    // Thanh trượt DASHBOARD
     public void sliderBars() {
 
         TranslateTransition slide = new TranslateTransition();
@@ -253,6 +212,51 @@ public class DashController implements Initializable {
         slide2.play();
         slide1.play();
         slide.play();
+    }
+
+    // Thay đổi ava người dùng
+    public void setAvatar() {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Select Avatar");
+        chooser.getExtensionFilters().add(new ExtensionFilter("Image file", "*png", "*jpg"));
+        Stage stage = (Stage)nav_form.getScene().getWindow();
+        File file = chooser.showOpenDialog(stage);
+
+        if(file != null) {
+            image = new Image(file.toURI().toString(), 100, 96, false, true);
+            circle_img.setFill(new ImagePattern(image));
+            semiCircle_img.setFill(new ImagePattern(image));
+
+            // getData.path = file.getAbsolutePath();
+        }
+    }
+
+    // Xử lý thay đổi nút edit_btn (thay ava) cho đẹp
+    public void designSetAvatar() {
+
+        edit_button.setVisible(false);
+
+        circle_img.setOnMouseEntered((MouseEvent event) -> {
+            edit_button.setVisible(true);
+        });
+
+        circle_img.setOnMouseExited((MouseEvent event) -> {
+            edit_button.setVisible(false);
+        });
+
+        edit_button.setOnMouseEntered((MouseEvent event) -> {
+            edit_button.setVisible(true);
+            edit_icon.setFill(Color.valueOf("ffff"));
+        });
+
+        edit_button.setOnMousePressed((MouseEvent event) -> {
+            edit_button.setVisible(true);
+            edit_icon.setFill(Color.RED);
+        });
+
+        edit_button.setOnMouseExited((MouseEvent event) -> {
+            edit_button.setVisible(false);
+        });
     }
 
     private void openTetrisGame() {

@@ -56,7 +56,6 @@ public class Tetris extends Application {
 
 		initializeGame(); // Gọi hàm khởi tạo game
 
-		// Thiết lập Scene và hiển thị cửa sổ
 		stage.setScene(scene);
 		stage.setTitle("T E T R I S");
 		stage.show();
@@ -66,7 +65,7 @@ public class Tetris extends Application {
 		task = new TimerTask() {
 			public void run() {
 				Platform.runLater(() -> {
-					if (!isPaused) { // Chỉ chạy khi game không bị tạm dừng
+					if (!isPaused) { 
 						if (object.a.getY() == 0 || object.b.getY() == 0 || object.c.getY() == 0
 								|| object.d.getY() == 0)
 							top++;
@@ -105,9 +104,9 @@ public class Tetris extends Application {
 			}
 		};
 
-		fall.schedule(task, 0, 300); // Lên lịch thực hiện logic rơi
+		fall.schedule(task, 0, 300); 
 
-		// Sự kiện đóng cửa sổ game
+		
 		gameStage.setOnCloseRequest(event -> {
 			isGameOver = true;
 		});
@@ -154,18 +153,17 @@ public class Tetris extends Application {
 		nextText.setY(50);
 		nextText.setX(WIDTH + 5);
 
-		// Thêm các thành phần vào group
 		group.getChildren().addAll(line, scoreText, lineText, levelText, nextText, nextBlockGroup);
 
-		// Tạo khối đầu tiên
 		FormBlock a = nextObj;
 		group.getChildren().addAll(a.a, a.b, a.c, a.d);
-		moveOnKeyPress(a); // Thêm sự kiện di chuyển
-		object = a; // Lưu khối hiện tại
-		nextObj = TetrisController.makeRect(); // Tạo khối tiếp theo
+		moveOnKeyPress(a); 
+		object = a; 
+		nextObj = TetrisController.makeRect(); 
 		updateNextBlockDisplay(); // Cập nhật hiển thị "Next"
 	}
 
+	// Xử lý sự kiện bàn phím
 	private void moveOnKeyPress(FormBlock a) {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
@@ -480,6 +478,7 @@ public class Tetris extends Application {
 		}
 	}
 
+	// Xóa đi hàng đã đầy và xửa lý và xử lý tăng hàng, điểm.
 	private void RemoveRows(Pane pane) {
 		ArrayList<Node> rects = new ArrayList<Node>();
 		ArrayList<Integer> lines = new ArrayList<Integer>();
@@ -591,9 +590,10 @@ public class Tetris extends Application {
 				});
 			}
 		};
-		fall.schedule(task, 0, 300); // Điều chỉnh tốc độ theo nhu cầu
+		fall.schedule(task, 0, 300); 
 	}
 
+	// Xử lý trạng thái PAUSE GAME
 	private void togglePause() {
 		isPaused = !isPaused; // Chuyển trạng thái tạm dừng
 
@@ -725,7 +725,7 @@ public class Tetris extends Application {
 
 	// Hàm reset game, chuẩn bị cho một lượt chơi mới
 	private void resetGame() {
-		isGameOver = false; // Đặt lại trạng thái game
+		isGameOver = false; 
 	}
 
 	public boolean isGameOver() {
