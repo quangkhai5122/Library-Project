@@ -97,25 +97,25 @@
 }
 
 .save-btn{
-    -fx-background-color:#558e74;
+    -fx-background-color:#2016a3;
     -fx-background-radius:15px;
     -fx-font-size:15px;
     -fx-cursor:hand;
     -fx-text-fill:#fff;
 }
 .save-btn:hover{
-    -fx-background-color:#57b187;
+    -fx-background-color:#5a72de;
 }
 
 .take-btn{
-    -fx-background-color:#914f96;
+    -fx-background-color:#b12a2a;
     -fx-background-radius:15px;
     -fx-cursor:hand;
     -fx-font-size:15px;
     -fx-text-fill:#fff;
 }
 .take-btn:hover{
-    -fx-background-color:#b356bb;
+    -fx-background-color:#cd6060;
 }
 
 .textfield_take{
