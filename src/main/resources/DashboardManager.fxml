@@ -34,6 +34,16 @@
                               <FontAwesomeIcon glyphName="MINUS" size="1.2em" />
                            </graphic>
                         </Button>
+                        <Label layoutX="57.0" layoutY="8.0" prefHeight="21.0" prefWidth="38.0" text="L.S.M">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@bookicon.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <Button fx:id="bars_btn" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#sliderBars" prefHeight="32.0" prefWidth="38.0" styleClass="bars" stylesheets="@dashboardDesign.css" visible="false">
@@ -61,17 +71,17 @@
                      <children>
                         <Circle fx:id="semiCircle_img" fill="#2b3136" layoutX="39.0" layoutY="61.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
                         <Line endX="-45.33332061767578" layoutX="111.0" layoutY="117.0" startX="-100.0" stroke="WHITE" />
-                        <Button fx:id="semidash_btn" layoutX="12.0" layoutY="165.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="52.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css">
+                        <Button fx:id="semidash_btn" layoutX="12.0" layoutY="165.0" mnemonicParsing="false" onAction="#showDashboard" prefHeight="49.0" prefWidth="52.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css">
                            <graphic>
                               <FontAwesomeIcon glyphName="TACHOMETER" size="2.5em" />
                            </graphic>
                         </Button>
-                        <Button fx:id="semiIn4mem_btn" layoutX="12.0" layoutY="231.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="52.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css">
+                        <Button fx:id="semiIn4mem_btn" layoutX="12.0" layoutY="231.0" mnemonicParsing="false" onAction="#showMember" prefHeight="49.0" prefWidth="52.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css">
                            <graphic>
                               <FontAwesomeIcon glyphName="USERS" size="2.5em" />
                            </graphic>
                         </Button>
-                        <Button fx:id="semiIn4book_btn" layoutX="12.0" layoutY="295.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="52.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css">
+                        <Button fx:id="semiIn4book_btn" layoutX="12.0" layoutY="295.0" mnemonicParsing="false" onAction="#showBookInfo" prefHeight="49.0" prefWidth="52.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css">
                            <graphic>
                               <FontAwesomeIcon glyphName="BOOK" size="2.5em" />
                            </graphic>
@@ -96,9 +106,9 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="dashboard_btn" layoutX="16.0" layoutY="266.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="169.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="DASHBOARD" />
-                        <Button fx:id="in4mem_btn" layoutX="16.0" layoutY="361.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="169.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="MEMBER INFORMATION" />
-                        <Button fx:id="in4book_btn" layoutX="15.0" layoutY="314.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="169.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="BOOK INFORMATION" />
+                        <Button fx:id="dashboard_btn" layoutX="16.0" layoutY="266.0" mnemonicParsing="false" onAction="#showDashboard" prefHeight="36.0" prefWidth="169.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="DASHBOARD" />
+                        <Button fx:id="in4mem_btn" layoutX="16.0" layoutY="361.0" mnemonicParsing="false" onAction="#showMember" prefHeight="36.0" prefWidth="169.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="MEMBER INFORMATION" />
+                        <Button fx:id="in4book_btn" layoutX="15.0" layoutY="314.0" mnemonicParsing="false" onAction="#showBookInfo" prefHeight="36.0" prefWidth="169.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="BOOK INFORMATION" />
                         <Button fx:id="logout_btn" layoutX="15.0" layoutY="450.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="169.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="LOG OUT">
                            <graphic>
                               <FontAwesomeIcon glyphName="SIGN_OUT" size="2em" />
@@ -123,7 +133,7 @@
          <center>
             <AnchorPane fx:id="CenterMain_form" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="dashboard_form" prefHeight="508.6666666666667" prefWidth="778.6666666666666" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="dashshow" prefHeight="508.6666666666667" prefWidth="778.6666666666666" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane layoutX="12.0" layoutY="12.0" prefHeight="485.0" prefWidth="755.0" styleClass="card-form" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
                            <children>

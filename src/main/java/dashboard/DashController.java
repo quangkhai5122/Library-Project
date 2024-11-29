@@ -1,5 +1,6 @@
 package dashboard;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -12,6 +13,9 @@ import Object.BorrowedBook;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import database.DatabaseConnection;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import gametetris.Tetris;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -30,7 +34,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -39,6 +46,8 @@ public class DashController implements Initializable {
     private ObservableList<Book> List0fBooks = FXCollections.observableArrayList();
     private ObservableList<Member> List0fMembers = FXCollections.observableArrayList();
     private final Map<String, Image> imageCache = new HashMap<>();
+    private int currentUserId;
+    private String avatarPath;
 
     @FXML
     private Button addbook_btn;
@@ -90,6 +99,15 @@ public class DashController implements Initializable {
 
     @FXML
     private Button semidash_btn;
+
+    @FXML
+    private Button game_btn;
+
+    @FXML
+    private Button semiGame_btn;
+
+    @FXML
+    private FontAwesomeIcon edit_icon;
 
     @FXML
     private Circle semiCircle_img;
@@ -260,14 +278,20 @@ public class DashController implements Initializable {
     private double x;
     private double y;
 
+    private Image image;
+    private Stage gameStage;
+
     @FXML
     public void logout(ActionEvent event) {
         try {
             if (event.getSource() == logout_btn || event.getSource() == semiLogout_btn) {
-                Parent root = FXMLLoader.load(getClass().getResource("/login/LoginManager.fxml"));
-
+                Parent root = FXMLLoader.load(getClass().getResource("/LoginManager.fxml"));
+                Image icon = new Image("/bookicon.png");
                 Stage stage = new Stage();
+                stage.getIcons().add(icon);
+                stage.setTitle("L.S.M");
                 Scene scene = new Scene(root);
+                scene.getStylesheets().add(getClass().getResource("/design/style.css").toExternalForm());
 
                 root.setOnMousePressed((MouseEvent e) -> {
                     x = e.getSceneX();
@@ -713,6 +737,7 @@ public class DashController implements Initializable {
         authorcnt.setText("");
         loadDashboardData();
     }
+
     @FXML
     //Ham hien thi sdt hoi vien.
     protected void showMemberPhoneNumber(int memberCode) {
@@ -890,9 +915,118 @@ public class DashController implements Initializable {
         pop.showAndWait();
     }
 
+    private void openTetrisGame() {
+        // Đóng cửa sổ game cũ (nếu tồn tại)
+        if (gameStage != null) {
+            gameStage.close();
+        }
+        // Khởi chạy game Tetris
+        Tetris tetris = new Tetris();
+        gameStage = new Stage();
+        try {
+            tetris.start(gameStage); // Gọi start() của TetrisGame
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setAvatar() {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Select Avatar");
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image file", "*png", "*jpg"));
+        Stage stage = (Stage) nav_form.getScene().getWindow();
+        File file = chooser.showOpenDialog(stage);
+
+        if (file != null) {
+            image = new Image(file.toURI().toString(), 100, 96, false, true);
+            circle_img.setFill(new ImagePattern(image));
+            semiCircle_img.setFill(new ImagePattern(image));
+
+            String imagePath = file.getAbsolutePath();
+            savaAvatarToDB(imagePath);
+        }
+    }
+
+    private void savaAvatarToDB(String imagePath) {
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryDB", "root", "huy2206");
+            String sql = "UPDATE admin SET avatar_path = ? WHERE user_id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, imagePath);
+            pstmt.setInt(2, currentUserId);
+            pstmt.executeUpdate();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void loadAvatar() {
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryDB", "root", "huy2206");
+            String sql = "SELECT avatar_path FROM admin WHERE user_id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, currentUserId);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String avatarPath = rs.getString("avatar_path");
+                System.out.println("Avatar Path: " + avatarPath);
+                if (avatarPath != null && !avatarPath.isEmpty()) {
+                    File file = new File(avatarPath);
+                    if (file.exists()) {
+                        image = new Image(file.toURI().toString(), 100, 96, false, true);
+                        circle_img.setFill(new ImagePattern(image));
+                        semiCircle_img.setFill(new ImagePattern(image));
+                    }
+                }
+            } else {
+                System.out.println("No avatar found");
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void designSetAvatar() {
+
+        edit_button.setVisible(false);
+        circle_img.setOnMouseEntered((MouseEvent event) -> {
+            edit_button.setVisible(true);
+        });
+
+        circle_img.setOnMouseExited((MouseEvent event) -> {
+            edit_button.setVisible(false);
+        });
+
+        edit_button.setOnMouseEntered((MouseEvent event) -> {
+            edit_button.setVisible(true);
+            edit_icon.setFill(Color.valueOf("ffff"));
+        });
+
+        edit_button.setOnMousePressed((MouseEvent event) -> {
+            edit_button.setVisible(true);
+            edit_icon.setFill(Color.RED);
+        });
+
+        edit_button.setOnMouseExited((MouseEvent event) -> {
+            edit_button.setVisible(false);
+        });
+    }
+
+    public void setCurrentUserId(int userId) {
+        this.currentUserId = userId;
+    }
+
+    public void setCurrentUserAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        loadAvatar();
         loadDashboardData();
         loadPieChartData();
 
@@ -925,6 +1059,16 @@ public class DashController implements Initializable {
             if (newValue != null) {
                 showBookDetailIn4(newValue);
             }
+        });
+
+        designSetAvatar();
+        // Gắn sự kiện cho nút game_btn
+        game_btn.setOnAction(event -> {
+            openTetrisGame(); // Mở game Tetris
+        });
+
+        semiGame_btn.setOnAction(event -> {
+            openTetrisGame(); // Mở game Tetris
         });
     }
 
